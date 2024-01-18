@@ -16,7 +16,18 @@ git clone https://github.com/nhoxben335/trello-web.git
 cd trello-web -> run "yarn install" -> run "yarn dev" (zsh)
 
 ## Project Phases
-### Phase 1: Planning and Design
+### Phase 1: Front-end JS
+React - React Hooks
+
+JSX vs JS
+
+Semantic Versioning
+
+Clean code
+
+Material Design UI
+
+Redux - Redux Toolkit
 
 ## Reference Documents
 ### Phase 1: Environment Set-up
