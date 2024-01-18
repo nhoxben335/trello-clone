@@ -1,4 +1,4 @@
-# Task Manager App
+# Trello Web App
 A full-stack MERN Trello application for managing tasks.
 
 ## Introduction
