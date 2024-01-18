@@ -41,3 +41,5 @@ Vite: https://vitejs.dev/guide/
 
 NVM: https://github.com/nvm-sh/nvm#install--update-script
 
+ESlint: https://eslint.org/docs/latest/use/getting-started
+
