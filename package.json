@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "author": "Nhan Vo",
-  "description": "Trello Clone",
+  "description": "This is fullstack Trello clone web app",
   "engines": {
     "node": "18.16.0"
   },
