@@ -43,3 +43,11 @@ NVM: https://github.com/nvm-sh/nvm#install--update-script
 
 ESlint: https://eslint.org/docs/latest/use/getting-started
 
+@mui/material: https://www.npmjs.com/package/@mui/material
+
+@emotion/react: https://www.npmjs.com/package/@emotion/react
+
+@emotion/styled: https://www.npmjs.com/package/@emotion/styled
+
+
+
