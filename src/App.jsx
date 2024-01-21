@@ -6,7 +6,7 @@ import ThreeDRotation from '@mui/icons-material/ThreeDRotation'
 function App() {
   return (
     <>
-      <div> Nhan Vo dev </div>
+      <div> Nhan Vo Dev </div>
       <Button variant="text">Text</Button>
       <Button variant="contained">Contained</Button>
       <Button variant="outlined">Outlined</Button>
