@@ -49,6 +49,7 @@ ESlint: https://eslint.org/docs/latest/use/getting-started
 
 @emotion/styled: https://www.npmjs.com/package/@emotion/styled
 
-@mui/icons-material: 
+@mui/icons-material: https://www.npmjs.com/package/@mui/icons-material
+
 
 
