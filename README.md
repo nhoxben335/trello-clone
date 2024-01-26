@@ -53,7 +53,6 @@ ESlint: https://eslint.org/docs/latest/use/getting-started
 
 ### 2: Trello Web App Layout Analysis
 
-\![Trello Layout Web Page](https://github.com/nhoxben335/trello-clone/assets/76023735/0c269977-d40f-4ba5-9823-62c2d7a262c6)
-
+![Trello Layout Web Page](https://github.com/nhoxben335/trello-clone/assets/76023735/2c1e5b30-8ca4-4225-91c5-da89b62c9342)
 
 
