@@ -30,7 +30,7 @@ Material Design UI
 Redux - Redux Toolkit
 
 ## Reference Documents
-### Phase 1: Environment Set-up
+### 1: Environment Set-up
 NodeJS: [https://nodejs.org/en](https://nodejs.org/en)
 
 Git: [https://git-scm.com/](https://git-scm.com/)
@@ -50,6 +50,10 @@ ESlint: https://eslint.org/docs/latest/use/getting-started
 @emotion/styled: https://www.npmjs.com/package/@emotion/styled
 
 @mui/icons-material: https://www.npmjs.com/package/@mui/icons-material
+
+### 2: Trello Web App Layout Analysis
+
+\![Trello Layout Web Page](https://github.com/nhoxben335/trello-clone/assets/76023735/0c269977-d40f-4ba5-9823-62c2d7a262c6)
 
 
 
