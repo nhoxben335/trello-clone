@@ -4,8 +4,8 @@ import { teal, deepOrange, cyan, orange } from '@mui/material/colors'
 // Create a theme instance.
 const theme = extendTheme({
   trello: {
-    appBarHeight: '98px',
-    boardBarHeight: '58px'
+    appBarHeight: '88px',
+    boardBarHeight: '60px'
   },
   colorSchemes: {
     light: {
