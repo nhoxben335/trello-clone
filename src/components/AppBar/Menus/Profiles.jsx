@@ -34,8 +34,8 @@ function Profiles() {
         >
           <Avatar
             alt='Nhan Vo Dev'
-            sx={{ width: 30, height: 30 }}
-            src=''
+            sx={{ width: 34, height: 30 }}
+            src='https://nhan-vo-personal-portfolio-website.netlify.app/assets/img/home-perfil.jpg'
           />
         </IconButton>
       </Tooltip>
