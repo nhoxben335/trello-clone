@@ -1,5 +1,4 @@
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
-// import { teal, deepOrange, cyan, orange } from '@mui/material/colors'
 
 // Create a theme instance.
 const theme = extendTheme({
@@ -30,11 +29,11 @@ const theme = extendTheme({
             height: '8px'
           },
           '*::-webkit-scrollbar-thumb': {
-            backgroundColor: '#bdc3c7',
+            backgroundColor: '#dcdde1',
             borderRadius: '8px'
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: '#00b894'
+            backgroundColor: 'white'
           }
         }
       }
@@ -42,21 +41,23 @@ const theme = extendTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none'
+          textTransform: 'none',
+          borderWidth: '0.5px',
+          '&:hover': { borderWidth: '0.5px' }
         }
       }
     },
     MuiInputLabel: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: {
           // color: theme.palette.primary.main,
           fontSize: '0.875rem'
-        })
+        }
       }
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: {
           // color: theme.palette.primary.main,
           fontSize: '0.875rem',
           // https://stackoverflow.com/questions/69860132/how-to-remove-the-border-of-the-material-ui-select-component/73707977#73707977
@@ -68,10 +69,10 @@ const theme = extendTheme({
           // borderColor: theme.palette.primary.light
           //   }
           // },
-          '& fieldset': {
-            borderWidth: '1px !important'
-          }
-        })
+          '& fieldset': { borderWidth: '0.5px !important' },
+          '&:hover fieldset': { borderWidth: '1px !important' },
+          '&.Mui-focused fieldset': { borderWidth: '1px !important' }
+        }
       }
     }
   }

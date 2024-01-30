@@ -77,7 +77,7 @@ function AppBar() {
             endAdornment: (
               <CloseIcon
                 fontSize='small'
-                sx={{ color: 'white', cursor: 'pointer' }}
+                sx={{ color: searchValue ? 'white' : 'transparent', cursor: 'pointer' }}
                 onClick={() => setSearchValue('')}
               />
             )
@@ -98,7 +98,7 @@ function AppBar() {
 
         <ModeSelect />
         <Tooltip tittle='Notification'>
-          <Badge color="secondary" variant="dot" sx={{ cursor: 'pointer' }}>
+          <Badge color="warning" variant="dot" sx={{ cursor: 'pointer' }}>
             <NotificationsNoneIcon sx={{ color: 'white' }} />
           </Badge>
         </Tooltip >
