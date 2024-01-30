@@ -91,7 +91,7 @@ function AppBar() {
             '& .MuiOutlinedInput-root': {
               '& fieldset': { borderColor: 'white' },
               '&:hover fieldset': { borderColor: 'white' },
-              '&.Mui-focused fieldset': { borderColor: 'white' },
+              '&.Mui-focused fieldset': { borderColor: 'white' }
             }
           }}
         />
