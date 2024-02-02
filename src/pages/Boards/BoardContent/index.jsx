@@ -38,225 +38,464 @@ function BoardContent() {
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34496e' : '#1976d2'),
       width: '100%',
       height: (theme) => theme.trello.boardContentHeight,
-      display: 'flex'
+      p: '10px 0'
     }}>
-      {/* BOX COLUMN */}
       <Box sx={{
-        minWidth: '300px',
-        maxWidth: '300px',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#333643' : '#ebecf0'),
-        ml: 2,
-        borderRadius: '6px',
-        height: 'fit-content',
-        maxHeight: (theme) => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
+        bgcolor: 'inherit',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        overflowX: 'auto',
+        overflowY: 'hidden',
+        '&::-webkit-scrollbar-track': { m: 2 }
       }}>
-        {/* BOX COLUMN HEADER */}
+        {/* BOX COLUMN 01 */}
         <Box sx={{
-          height: COLUM_HEADER_HEIGHT,
-          p: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          minWidth: '300px',
+          maxWidth: '300px',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#333643' : '#ebecf0'),
+          ml: 2,
+          borderRadius: '6px',
+          height: 'fit-content',
+          maxHeight: (theme) => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
         }}>
-          <Typography sx={{
-            fontWeight: 'bold',
-            cursor: 'pointer'
-          }}> Column Title </Typography>
-          <Box>
-            <Tooltip title='More options'>
-              <ExpandMoreIcon
-                sx={{ color: 'text.primary', cursor: 'pointer' }}
-                id="basic-column-dropdown"
-                aria-controls={open ? 'basic-menu-column-dropdown' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
+          {/* BOX COLUMN HEADER */}
+          <Box sx={{
+            height: COLUM_HEADER_HEIGHT,
+            p: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <Typography variant='h6' sx={{
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}> Column Title </Typography>
+            <Box>
+              <Tooltip title='More options'>
+                <ExpandMoreIcon
+                  sx={{ color: 'text.primary', cursor: 'pointer' }}
+                  id="basic-column-dropdown"
+                  aria-controls={open ? 'basic-menu-column-dropdown' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                />
+              </Tooltip>
+              <Menu
+                id="basic-menu-column-dropdown"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-column-dropdown'
+                }}
+              >
+                <MenuItem>
+                  <ListItemIcon><AddCardIcon fontSize="small" /></ListItemIcon>
+                  <ListItemText>Add new card</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><ContentCut fontSize="small" /></ListItemIcon>
+                  <ListItemText>Cute</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><ContentCopy fontSize="small" /></ListItemIcon>
+                  <ListItemText>Copy</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><ContentPaste fontSize="small" /></ListItemIcon>
+                  <ListItemText>Paste</ListItemText>
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                  <ListItemIcon><DeleteForeverIcon fontSize="small" /></ListItemIcon>
+                  <ListItemText>Remove this column</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><Cloud fontSize="small" /></ListItemIcon>
+                  <ListItemText>Archive this column</ListItemText>
+                </MenuItem>
+              </Menu>
+            </Box>
+          </Box>
+
+          {/* BOX LIST CARD */}
+          <Box sx={{
+            p: '0 5px',
+            m: '0 5px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            maxHeight: (theme) => `calc(
+              ${theme.trello.boardContentHeight} - 
+              ${theme.spacing(5)} -
+              ${COLUM_HEADER_HEIGHT} - 
+              ${COLUM_FOOTER_HEIGHT}
+              )`,
+            '&::-webkit-scrollbar-thumb': { backgroundColor: '#ced0da', borderRadius: '8px' },
+            '&::-webkit-scrollbar-thumb:hover': { backgroundColor: '#bfc2cf' }
+          }}>
+            {/* MAIN CARD */}
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardMedia
+                sx={{ height: 140 }}
+                image="https://media.licdn.com/dms/image/C5616AQEZfMhmlvyaqg/profile-displaybackgroundimage-shrink_350_1400/0/1633974284606?e=1712188800&v=beta&t=_i61Ic7vE2tGXUJhdnOZCHBY6PGTheTAfO2ScBeqGeQ"
+                title="green iguana"
               />
+              <CardContent sx={{ p: 1.5 }}>
+                <Typography>
+                  Nhan Vo MERN Stack
+                </Typography>
+              </CardContent>
+              <CardActions sx={{ p: '0 4px 8px 4px' }}>
+                <Button size="small" startIcon={<GroupIcon />}>20</Button>
+                <Button size="small" startIcon={<CommentIcon />}>20</Button>
+                <Button size="small" startIcon={<AttachmentIcon />}>20</Button>
+              </CardActions>
+            </Card>
+            {/* CARD 01 */}
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+
+          {/* BOX FOOTER */}
+          <Box sx={{
+            height: COLUM_FOOTER_HEIGHT,
+            p: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <Button startIcon={<AddCardIcon />}> Add new Card </Button>
+            <Tooltip title="Drag to move">
+              <DragHandleIcon sx={{ cursor: 'pointer' }} />
             </Tooltip>
-            <Menu
-              id="basic-menu-column-dropdown"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-column-dropdown'
-              }}
-            >
-              <MenuItem>
-                <ListItemIcon><AddCardIcon fontSize="small" /></ListItemIcon>
-                <ListItemText>Add new card</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon><ContentCut fontSize="small" /></ListItemIcon>
-                <ListItemText>Cute</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon><ContentCopy fontSize="small" /></ListItemIcon>
-                <ListItemText>Copy</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon><ContentPaste fontSize="small" /></ListItemIcon>
-                <ListItemText>Paste</ListItemText>
-              </MenuItem>
-              <Divider />
-              <MenuItem>
-                <ListItemIcon><DeleteForeverIcon fontSize="small" /></ListItemIcon>
-                <ListItemText>Remove this column</ListItemText>
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon><Cloud fontSize="small" /></ListItemIcon>
-                <ListItemText>Archive this column</ListItemText>
-              </MenuItem>
-            </Menu>
           </Box>
         </Box>
-
-        {/* BOX LIST CARD */}
+        {/* BOX COLUMN 02 */}
         <Box sx={{
-          padding: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 1,
-          overflowX: 'hidden',
-          overflowY: 'auto',
-          maxHeight: (theme) => `calc(
-            ${theme.trello.boardContentHeight} - 
-            ${theme.spacing(5)} -
-            ${COLUM_HEADER_HEIGHT} - 
-            ${COLUM_FOOTER_HEIGHT}
-            )`
+          minWidth: '300px',
+          maxWidth: '300px',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#333643' : '#ebecf0'),
+          ml: 2,
+          borderRadius: '6px',
+          height: 'fit-content',
+          maxHeight: (theme) => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
         }}>
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
+          {/* BOX COLUMN HEADER */}
+          <Box sx={{
+            height: COLUM_HEADER_HEIGHT,
+            p: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
           }}>
-            <CardMedia
-              sx={{ height: 140 }}
-              image="https://media.licdn.com/dms/image/C5616AQEZfMhmlvyaqg/profile-displaybackgroundimage-shrink_350_1400/0/1633974284606?e=1712188800&v=beta&t=_i61Ic7vE2tGXUJhdnOZCHBY6PGTheTAfO2ScBeqGeQ"
-              title="green iguana"
-            />
-            <CardContent sx={{ p: 1.5 }}>
-              <Typography>
-                Nhan Vo MERN Stack
-              </Typography>
-            </CardContent>
-            <CardActions sx={{ p: '0 4px 8px 4px' }}>
-              <Button size="small" startIcon={<GroupIcon />}>20</Button>
-              <Button size="small" startIcon={<CommentIcon />}>20</Button>
-              <Button size="small" startIcon={<AttachmentIcon />}>20</Button>
-            </CardActions>
-          </Card>
-          {/* CARD 01 */}
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
-          }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
+            <Typography variant='h6' sx={{
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}> Column Title </Typography>
+            <Box>
+              <Tooltip title='More options'>
+                <ExpandMoreIcon
+                  sx={{ color: 'text.primary', cursor: 'pointer' }}
+                  id="basic-column-dropdown"
+                  aria-controls={open ? 'basic-menu-column-dropdown' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                />
+              </Tooltip>
+              <Menu
+                id="basic-menu-column-dropdown"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-column-dropdown'
+                }}
+              >
+                <MenuItem>
+                  <ListItemIcon><AddCardIcon fontSize="small" /></ListItemIcon>
+                  <ListItemText>Add new card</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><ContentCut fontSize="small" /></ListItemIcon>
+                  <ListItemText>Cute</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><ContentCopy fontSize="small" /></ListItemIcon>
+                  <ListItemText>Copy</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><ContentPaste fontSize="small" /></ListItemIcon>
+                  <ListItemText>Paste</ListItemText>
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                  <ListItemIcon><DeleteForeverIcon fontSize="small" /></ListItemIcon>
+                  <ListItemText>Remove this column</ListItemText>
+                </MenuItem>
+                <MenuItem>
+                  <ListItemIcon><Cloud fontSize="small" /></ListItemIcon>
+                  <ListItemText>Archive this column</ListItemText>
+                </MenuItem>
+              </Menu>
+            </Box>
+          </Box>
 
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
+          {/* BOX LIST CARD */}
+          <Box sx={{
+            p: '0 5px',
+            m: '0 5px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1,
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            maxHeight: (theme) => `calc(
+              ${theme.trello.boardContentHeight} - 
+              ${theme.spacing(5)} -
+              ${COLUM_HEADER_HEIGHT} - 
+              ${COLUM_FOOTER_HEIGHT}
+              )`,
+            '&::-webkit-scrollbar-thumb': { backgroundColor: '#ced0da', borderRadius: '8px' },
+            '&::-webkit-scrollbar-thumb:hover': { backgroundColor: '#bfc2cf' }
           }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
+            {/* MAIN CARD */}
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardMedia
+                sx={{ height: 140 }}
+                image="https://media.licdn.com/dms/image/C5616AQEZfMhmlvyaqg/profile-displaybackgroundimage-shrink_350_1400/0/1633974284606?e=1712188800&v=beta&t=_i61Ic7vE2tGXUJhdnOZCHBY6PGTheTAfO2ScBeqGeQ"
+                title="green iguana"
+              />
+              <CardContent sx={{ p: 1.5 }}>
+                <Typography>
+                  Nhan Vo MERN Stack
+                </Typography>
+              </CardContent>
+              <CardActions sx={{ p: '0 4px 8px 4px' }}>
+                <Button size="small" startIcon={<GroupIcon />}>20</Button>
+                <Button size="small" startIcon={<CommentIcon />}>20</Button>
+                <Button size="small" startIcon={<AttachmentIcon />}>20</Button>
+              </CardActions>
+            </Card>
+            {/* CARD 01 */}
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
 
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+
+            <Card sx={{
+              cursor: 'pointer',
+              boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+              overflow: 'unset'
+            }}>
+              <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+                <Typography>
+                  Card 01
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+
+          {/* BOX FOOTER */}
+          <Box sx={{
+            height: COLUM_FOOTER_HEIGHT,
+            p: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
           }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
-
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
-          }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
-
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
-          }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
-
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
-          }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
-
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
-          }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
-
-          <Card sx={{
-            cursor: 'pointer',
-            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-            overflow: 'unset'
-          }}>
-            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-              <Typography>
-                Card 01
-              </Typography>
-            </CardContent>
-          </Card>
-        </Box>
-
-        {/* BOX FOOTER */}
-        <Box sx={{
-          height: COLUM_FOOTER_HEIGHT,
-          p: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}>
-          <Button startIcon={<AddCardIcon />}> Add new Card </Button>
-          <Tooltip title="Drag to move">
-            <DragHandleIcon sx={{ cursor: 'pointer' }} />
-          </Tooltip>
+            <Button startIcon={<AddCardIcon />}> Add new Card </Button>
+            <Tooltip title="Drag to move">
+              <DragHandleIcon sx={{ cursor: 'pointer' }} />
+            </Tooltip>
+          </Box>
         </Box>
       </Box>
     </Box>
