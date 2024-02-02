@@ -15,7 +15,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Tooltip from '@mui/material/Tooltip'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import AddCardIcon from '@mui/icons-material/AddCard'
-import { Add } from '@mui/icons-material'
+import DragHandleIcon from '@mui/icons-material/DragHandle'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import GroupIcon from '@mui/icons-material/Group'
+import CommentIcon from '@mui/icons-material/Comment'
+import AttachmentIcon from '@mui/icons-material/Attachment'
 
 const COLUM_HEADER_HEIGHT = '50px'
 const COLUM_FOOTER_HEIGHT = '56px'
@@ -33,14 +40,17 @@ function BoardContent() {
       height: (theme) => theme.trello.boardContentHeight,
       display: 'flex'
     }}>
+      {/* BOX COLUMN */}
       <Box sx={{
         minWidth: '300px',
         maxWidth: '300px',
         bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#333643' : '#ebecf0'),
         ml: 2,
-        borderRadius: '6px'
-
+        borderRadius: '6px',
+        height: 'fit-content',
+        maxHeight: (theme) => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
       }}>
+        {/* BOX COLUMN HEADER */}
         <Box sx={{
           height: COLUM_HEADER_HEIGHT,
           p: 2,
@@ -101,19 +111,151 @@ function BoardContent() {
           </Box>
         </Box>
 
-        <Box sx={{}}>
-          List Card
+        {/* BOX LIST CARD */}
+        <Box sx={{
+          padding: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1,
+          overflowX: 'hidden',
+          overflowY: 'auto',
+          maxHeight: (theme) => `calc(
+            ${theme.trello.boardContentHeight} - 
+            ${theme.spacing(5)} -
+            ${COLUM_HEADER_HEIGHT} - 
+            ${COLUM_FOOTER_HEIGHT}
+            )`
+        }}>
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://media.licdn.com/dms/image/C5616AQEZfMhmlvyaqg/profile-displaybackgroundimage-shrink_350_1400/0/1633974284606?e=1712188800&v=beta&t=_i61Ic7vE2tGXUJhdnOZCHBY6PGTheTAfO2ScBeqGeQ"
+              title="green iguana"
+            />
+            <CardContent sx={{ p: 1.5 }}>
+              <Typography>
+                Nhan Vo MERN Stack
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ p: '0 4px 8px 4px' }}>
+              <Button size="small" startIcon={<GroupIcon />}>20</Button>
+              <Button size="small" startIcon={<CommentIcon />}>20</Button>
+              <Button size="small" startIcon={<AttachmentIcon />}>20</Button>
+            </CardActions>
+          </Card>
+          {/* CARD 01 */}
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card sx={{
+            cursor: 'pointer',
+            boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
+            overflow: 'unset'
+          }}>
+            <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
+              <Typography>
+                Card 01
+              </Typography>
+            </CardContent>
+          </Card>
         </Box>
 
+        {/* BOX FOOTER */}
         <Box sx={{
           height: COLUM_FOOTER_HEIGHT,
           p: 2,
+          display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
           <Button startIcon={<AddCardIcon />}> Add new Card </Button>
-          <Tooltip>
-            
+          <Tooltip title="Drag to move">
+            <DragHandleIcon sx={{ cursor: 'pointer' }} />
           </Tooltip>
         </Box>
       </Box>
