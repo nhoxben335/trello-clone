@@ -33,7 +33,7 @@ function Starred() {
           Starred
       </Button>
       <Menu
-        id="basic-menu"
+        id="basic-menu-starred"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

@@ -33,7 +33,7 @@ function Templates() {
           Templates
       </Button>
       <Menu
-        id="basic-menu"
+        id="basic-menu-templates"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

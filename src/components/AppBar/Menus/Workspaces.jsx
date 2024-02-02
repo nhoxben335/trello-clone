@@ -13,7 +13,6 @@ import ContentPaste from '@mui/icons-material/ContentPaste'
 import Cloud from '@mui/icons-material/Cloud'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-
 function Workspaces() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -35,10 +34,10 @@ function Workspaces() {
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
       >
-          Workspaces
+        Workspaces
       </Button>
       <Menu
-        id="basic-menu"
+        id="basic-menu-workspaces"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -84,4 +83,5 @@ function Workspaces() {
     </Box>
   )
 }
+
 export default Workspaces
