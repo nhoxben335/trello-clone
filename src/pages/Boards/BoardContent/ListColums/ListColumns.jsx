@@ -16,9 +16,7 @@ function ListColumns({ columns }) {
       '&::-webkit-scrollbar-track': { m: 2 }
     }}>
       {/* Mapping the column */}
-      {columns?.map((column) => {
-        return <Column key={column._id} />
-      })}
+      {columns?.map(column => <Column key={column._id} column={column} />)}
 
       {/* Box add new column */}
       <Box sx={{
