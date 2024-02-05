@@ -55,4 +55,6 @@ ESlint: https://eslint.org/docs/latest/use/getting-started
 
 ![Trello Layout Web Page](https://github.com/nhoxben335/trello-clone/assets/76023735/2c1e5b30-8ca4-4225-91c5-da89b62c9342)
 
+### 3: New Component Structure
 
+<img width="1139" alt="New component structure" src="https://github.com/nhoxben335/trello-clone/assets/76023735/59e66226-cb86-4c6a-b6e2-e8e3ceafc87f">
