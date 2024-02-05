@@ -1,11 +1,7 @@
 import Box from '@mui/material/Box'
 import ListColumns from './ListColums/ListColumns'
 
-function BoardContent() {
-  // const [anchorEl, setAnchorEl] = useState(null)
-  // const open = Boolean(anchorEl)
-  // const handleClick = (event) => setAnchorEl(event.currentTarget)
-  // const handleClose = () => setAnchorEl(null)
+function BoardContent({ board }) {
 
   return (
     <Box sx={{
@@ -14,7 +10,7 @@ function BoardContent() {
       height: (theme) => theme.trello.boardContentHeight,
       p: '10px 0'
     }}>
-      <ListColumns />
+      <ListColumns columns={board?.columns}/>
     </Box>
   )
 }
