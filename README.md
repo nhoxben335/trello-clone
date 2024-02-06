@@ -58,3 +58,10 @@ ESlint: https://eslint.org/docs/latest/use/getting-started
 ### 3: New Component Structure
 
 <img width="1139" alt="New component structure" src="https://github.com/nhoxben335/trello-clone/assets/76023735/59e66226-cb86-4c6a-b6e2-e8e3ceafc87f">
+
+### 4: Sort Data 
+Optional Chaining, Object Destructuring, String charAt, String toUpperCase, Array Slice, Spread Operator, Array sort, Array indexOf
+- React map keys:
+https://legacy.reactjs.org/docs/lists-and-keys.html
+- Clone Array:
+https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/
