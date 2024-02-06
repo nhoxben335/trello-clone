@@ -65,3 +65,7 @@ Optional Chaining, Object Destructuring, String charAt, String toUpperCase, Arra
 https://legacy.reactjs.org/docs/lists-and-keys.html
 - Clone Array:
 https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/
+
+### 5: Dnd-kit, Drag, and Drop Research
+- dnd-kit: https://dndkit.com
+- Which drag and drop library should use?: https://levelup.gitconnected.com/say-goodbye-to-react-dnd-hello-to-dnd-kit-the-future-of-drag-and-drop-is-here-6aa488f17a0
