@@ -21,10 +21,9 @@ function Card({ card }) {
       overflow: 'unset'
     }}>
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} /> }
-      <CardContent sx={{ p: 1.5 }}>
+      <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
         <Typography>{card?.title}</Typography>
       </CardContent>
-
       {shouldShowCardActions() &&
         <CardActions sx={{ p: '0 4px 8px 4px' }}>
           {!!card?.memberIds?.length &&
