@@ -29,8 +29,10 @@ function Column({ column }) {
     transform,
     transition
   } = useSortable({ id: column._id, data: { ...column } })
+  // If you use CSS.Transform as docs, there will be a stretch error
+  // https://github.com/clauderic/dnd-kit/issues/117
   const dndKitColumnStyles = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition
   }
   const [anchorEl, setAnchorEl] = useState(null)
