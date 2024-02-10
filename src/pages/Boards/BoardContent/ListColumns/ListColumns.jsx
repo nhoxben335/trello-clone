@@ -5,9 +5,14 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd'
 import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 
 function ListColumns({ columns }) {
+  /***
+   * The SortableContext requires items to be an array of the form ['id-1', 'id-2'] and not [{id: 'id-1'}, {id: 'id-2'}]
+   * If not, you can still drag and drop but there will be no animation
+   * https://github.com/clauderic/dnd-kit/issues/183#issuecomment-812569512
+   */
 
   return (
-    <SortableContext items={columns} strategy={horizontalListSortingStrategy}>
+    <SortableContext items={columns?.map(c => c._id)} strategy={horizontalListSortingStrategy}>
       <Box sx={{
         bgcolor: 'inherit',
         width: '100%',

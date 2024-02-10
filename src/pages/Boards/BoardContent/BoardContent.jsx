@@ -9,7 +9,6 @@ function BoardContent({ board }) {
   const handleDragEnd = (event) => {
     console.log('handleDragEnd: ', event )
   }
-
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <Box sx={{
