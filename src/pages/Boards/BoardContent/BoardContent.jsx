@@ -2,9 +2,11 @@ import Box from '@mui/material/Box'
 import ListColumns from './ListColumns/ListColumns'
 import { mapOrder } from '~/utils/sorts'
 import { DndContext } from '@dnd-kit/core'
+import { useState } from 'react'
 
 function BoardContent({ board }) {
   const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
+  const [orderedColumnsState, setOrderedColumnsState] = useState([])
 
   const handleDragEnd = (event) => {
     console.log('handleDragEnd: ', event )
@@ -17,7 +19,7 @@ function BoardContent({ board }) {
         height: (theme) => theme.trello.boardContentHeight,
         p: '10px 0'
       }}>
-        <ListColumns columns={orderedColumns}/>
+        <ListColumns columns={orderedColumnsState}/>
       </Box>
     </DndContext>
   )
