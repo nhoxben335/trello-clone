@@ -13,6 +13,7 @@ Trello App is a web application that allows users to create, view, update, and d
 git clone https://github.com/nhoxben335/trello-web.git
 
 ## Install dependencies
+nvm use 18.16.0
 cd trello-web -> run "yarn install" -> run "yarn dev" (zsh)
 
 ## Project Phases
