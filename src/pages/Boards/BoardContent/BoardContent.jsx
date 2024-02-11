@@ -2,11 +2,15 @@ import Box from '@mui/material/Box'
 import ListColumns from './ListColumns/ListColumns'
 import { mapOrder } from '~/utils/sorts'
 import { DndContext } from '@dnd-kit/core'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function BoardContent({ board }) {
-  const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
   const [orderedColumnsState, setOrderedColumnsState] = useState([])
+
+  useEffect(() => {
+    const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
+    setOrderedColumnsState(orderedColumns)
+  }, [board])
 
   const handleDragEnd = (event) => {
     console.log('handleDragEnd: ', event )
