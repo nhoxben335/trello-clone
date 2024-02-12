@@ -30,15 +30,19 @@ function Column({ column }) {
   // https://github.com/clauderic/dnd-kit/issues/117
   // Bug on the drag and drop, however you can refer back to #30
   const dndKitColumnStyles = {
+    // touchAction: 'none', // Dành cho sensor default dạng PointerSensor
+    // Nếu sử dụng CSS.Transform như docs sẽ lỗi kiểu stretch
+    // https://github.com/clauderic/dnd-kit/issues/117
     transform: CSS.Translate.toString(transform),
     transition
   }
 
+  // Drop down menus
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
-
+  // Card arrangement
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
 
   return (

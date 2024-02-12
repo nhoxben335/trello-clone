@@ -63,4 +63,5 @@ https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f
 - Which drag and drop library should use?: https://levelup.gitconnected.com/say-goodbye-to-react-dnd-hello-to-dnd-kit-the-future-of-drag-and-drop-is-here-6aa488f17a0
 - Dnd-kit: https://www.npmjs.com/package/@dnd-kit/core
 - Dnd-kit-sortable: https://www.npmjs.com/package/@dnd-kit/sortable
-- https://www.npmjs.com/package/@dnd-kit/utilities
+- dnd-utilities: https://www.npmjs.com/package/@dnd-kit/utilities
+- Dnd-sensor: https://docs.dndkit.com/api-documentation/sensors
