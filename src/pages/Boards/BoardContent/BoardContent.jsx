@@ -13,33 +13,34 @@ import { useEffect, useState } from 'react'
 
 function BoardContent({ board }) {
   // https://docs.dndkit.com/api-documentation/sensors
-  // Nếu dùng PointerSensor mặc định thì phải kết hợp thuộc tính CSS touch-action: none ở những phần tử kéo thả - nhưng mà còn bug
+  // If you use the default PointerSensor, you must incorporate the CSS touch-action: none property on drag-and-drop elements - but that's still a bug.
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
 
-  // Yêu cầu chuột di chuyển 10px thì mới kích hoạt event, fix trường hợp click bị gọi event
+  // Require the mouse to move 10px to trigger the event, fix the case where the click event is called
   const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } })
 
-  // Nhấn giữ 250ms và dung sai của cảm ứng 500px thì mới kích hoạt event
+  // Press and hold for 250ms and the touch tolerance is 500px to trigger the event
   const touchSensor = useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 500 } })
 
-  // Ưu tiên sử dụng kết hợp 2 loại sensors là mouse và touch để có trải nghiệm trên mobile tốt nhất, không bị bug.
+  // Prioritize using a combination of two types of sensors, mouse and touch, to have the best mobile experience, without bugs.
   // const sensors = useSensors(pointerSensor)
   const sensors = useSensors(mouseSensor, touchSensor)
 
-  const [orderedColumns, setOrderedColumnsState] = useState([])
+  const [orderedColumns, setOrderedColumns] = useState([])
 
   useEffect(() => {
     // const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
-    setOrderedColumnsState(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
+    setOrderedColumns(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
   }, [board])
 
   const handleDragEnd = (event) => {
     console.log('handleDragEnd: ', event )
     const { active, over } = event
 
+    // Check if over not exist (drag will return error if bug occur)
     if (!over) return
-    // Dùng arrayMove của thằng dnd-kit để sắp xếp lại mảng Columns ban đầu
-    // Code của arrayMove ở đây: dnd-kit/packages/sortable/src/utilities/arrayMove.ts
+    // Use dnd-kit's arrayMove to rearrange the original Columns array
+    // Code of arrayMove is here: dnd-kit/packages/sortable/src/utilities/arrayMove.ts
     if (active.id !== over.id) {
       // Original index from active
       const oldIndex = orderedColumns.findIndex(c => c._id === active.id)
@@ -47,12 +48,13 @@ function BoardContent({ board }) {
       const newIndex = orderedColumns.findIndex(c => c._id === over.id)
 
       const dndorderedColumns = arrayMove(orderedColumns, oldIndex, newIndex)
-      console.log('dndorderedColumns: ', dndorderedColumns)
-      // setOrderedColumns(dndorderedColumns)
-      // For calling APIs later on
+      // These console.log for APIs call later on
       // const dndorderedColumnsIds = dndorderedColumns.map(c => c._id)
       // console.log('dndorderedColumns: ', dndorderedColumns)
       // console.log('dndorderedColumnsIds: ', dndorderedColumnsIds)
+
+      // Updated state columns after drag and drop
+      setOrderedColumns(dndorderedColumns)
     }
   }
 
