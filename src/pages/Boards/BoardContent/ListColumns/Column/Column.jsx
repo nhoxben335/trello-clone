@@ -30,7 +30,7 @@ function Column({ column }) {
   // https://github.com/clauderic/dnd-kit/issues/117
   // Bug on the drag and drop, however you can refer back to #30
   const dndKitColumnStyles = {
-    // touchAction: 'none', // Dành cho sensor default dạng PointerSensor
+    // touchAction: 'none', // For default sensors of PointerSensor type
     // Nếu sử dụng CSS.Transform như docs sẽ lỗi kiểu stretch
     // https://github.com/clauderic/dnd-kit/issues/117
     transform: CSS.Translate.toString(transform),
