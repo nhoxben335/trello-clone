@@ -68,3 +68,4 @@ https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f
 - (Sensors) Require mouse to move 10px to activate, fix case where click event is called: https://docs.dndkit.com/api-documentation/sensors#usesensor
 - The error of dragging and dropping stretched elements is quite strange: https://github.com/clauderic/dnd-kit/issues/117
 - Touch tolerance: Tolerance (read more in the comment I pinned): https://docs.dndkit.com/api-documentation/sensors/touch#delay
+- Dnd-kit DragOverLay: https://docs.dndkit.com/api-documentation/draggable/drag-overlay
