@@ -1,5 +1,5 @@
 # Trello Web App
-A full-stack MERN Trello application for managing tasks.
+A full-stack Trello application for managing tasks.
 
 ## Introduction
 Trello App is a web application that allows users to create, view, update, and delete tasks. It provides a user-friendly interface for managing tasks efficiently.

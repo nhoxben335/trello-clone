@@ -34,7 +34,7 @@ function BoardContent({ board }) {
   }, [board])
 
   const handleDragEnd = (event) => {
-    console.log('handleDragEnd: ', event )
+    // console.log('handleDragEnd: ', event )
     const { active, over } = event
 
     // Check if over not exist (drag will return error if bug occur)
