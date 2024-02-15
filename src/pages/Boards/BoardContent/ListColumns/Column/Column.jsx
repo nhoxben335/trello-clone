@@ -22,7 +22,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 function Column({ column }) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column }
   })
@@ -35,7 +35,9 @@ function Column({ column }) {
     // https://github.com/clauderic/dnd-kit/issues/117
     transform: CSS.Translate.toString(transform),
     transition,
-    height: '100%'
+    // The height must always be max 100% because otherwise it will be an error when dragging a short column over a long column, having to drag it in the middle area is very uncomfortable. Note that this must be combined with {...listeners} located in the Box, not in the outermost div to avoid dragging into the green area.
+    height: '100%',
+    opacity: isDragging ? 0.5 : undefined
   }
 
   // Drop down menus
