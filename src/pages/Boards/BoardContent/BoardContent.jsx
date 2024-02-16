@@ -63,7 +63,7 @@ function BoardContent({ board }) {
     setActiveDragItemType(event?.active?.data?.current?.columnId ? ACTIVE_DRAG_ITEM_TYPE.CARD : ACTIVE_DRAG_ITEM_TYPE.COLUMN)
     setActiveDragItemData(event?.active?.data?.current)
 
-    // Nếu là kéo card thì mới thực hiện hành động set giá trị oldColumn
+    // If you pull a card, then perform the action of setting the oldColumn value
     if (event?.active?.data?.current?.columnId) {
       setOldColumnWhenDraggingCard(findColumnByCardId(event?.active?.id))
     }
@@ -185,7 +185,6 @@ function BoardContent({ board }) {
           targetColumn.cards = dndorderedCards
           targetColumn.cardOrderIds = dndorderedCards.map(card => card._id)
           console.log('targetColumn: ', targetColumn)
-
           // Returns the new state value (standard position)
           return nextColumns
         })
