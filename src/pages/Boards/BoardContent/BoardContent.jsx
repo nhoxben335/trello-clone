@@ -56,6 +56,12 @@ function BoardContent({ board }) {
     return orderedColumns.find(column => column?.cards?.map(card => card._id)?.includes(cardId))
   }
 
+  // Khởi tạo Function chung xử lý việc cập nhật lại state trong trường hợp di chuyển Card giữa các Column khác nhau.
+  const moveCardBetweenDifferentColumns = () => {
+    
+  }
+
+
   // Trigger when start drag an elements
   const handleDragStart = (event) => {
     // console.log('handleDragEnd: ', event )
@@ -123,9 +129,14 @@ function BoardContent({ board }) {
           // Check if the card being pulled exists in overColumn, if so, need to delete it first data
           nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
           // Next, add the dragging card to overColumn according to the new index position
-          nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, activeDraggingCardData)
+          // Updated data at columnId in card after drag card between 2 columns
+          const rebuild_activeDraggingCardData = {
+            ...activeDraggingCardData,
+            columnId: nextOverColumn._id
+          }
+          nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
           // Updated OrderIds
-          nextOverColumn.cardOrderIds = nextOverColumn.cards.filter(card => card._id)
+          nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
         }
         // console.log('nextColumns: ', nextColumns)
         return nextColumns
@@ -187,9 +198,14 @@ function BoardContent({ board }) {
             // Check if the card being pulled exists in overColumn, if so, need to delete it first data
             nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
             // Next, add the dragging card to overColumn according to the new index position
-            nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, activeDraggingCardData)
+            // Updated data at columnId in card after drag card between 2 columns
+            const rebuild_activeDraggingCardData = {
+              ...activeDraggingCardData,
+              columnId: nextOverColumn._id
+            }
+            nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
             // Updated OrderIds
-            nextOverColumn.cardOrderIds = nextOverColumn.cards.filter(card => card._id)
+            nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
           }
           // console.log('nextColumns: ', nextColumns)
           return nextColumns
