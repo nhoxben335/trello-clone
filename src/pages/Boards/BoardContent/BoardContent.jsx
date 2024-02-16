@@ -9,7 +9,8 @@ import {
   useSensor,
   useSensors,
   DragOverlay,
-  defaultDropAnimationSideEffects
+  defaultDropAnimationSideEffects,
+  closestCorners
 } from '@dnd-kit/core'
 import { useEffect, useState } from 'react'
 import { cloneDeep } from 'lodash'
@@ -176,6 +177,8 @@ function BoardContent({ board }) {
 
   return (
     <DndContext
+      // Collision detection algorithm (without it, the card with a large cover will not be able to pull over the Column because there is now a conflict between the card and the column), we will use closestCorners instead of closestCenter
+      collisionDetection={closestCorners}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
