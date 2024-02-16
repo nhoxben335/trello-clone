@@ -72,3 +72,8 @@ https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f
 - Lodash: https://lodash.com/
 - getBoundingClientRect: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
 - Collision detection algorithms: https://docs.dndkit.com/api-documentation/context-provider/collision-detection-algorithms
+- Dnd-kit onDragEnd: https://docs.dndkit.com/api-documentation/context-provider#ondragend
+- Card Flickering when center: https://github.com/clauderic/dnd-kit/issues/1128#issuecomment-1671336452
+- Example for Multiple container: https://github.com/clauderic/dnd-kit/blob/master/stories/2%20-%20Presets/Sortable/MultipleContainers.tsx
+- Eslint rule: No extra boolean cast: https://eslint.org/docs/latest/rules/no-extra-boolean-cast
+- Collision flickering in multiple container sortable in the stories: https://github.com/clauderic/dnd-kit/issues/1213

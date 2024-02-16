@@ -10,9 +10,12 @@ import {
   useSensors,
   DragOverlay,
   defaultDropAnimationSideEffects,
-  closestCorners
+  closestCorners,
+  pointerWithin,
+  rectIntersection,
+  getFirstCollision
 } from '@dnd-kit/core'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { cloneDeep } from 'lodash'
 
 import Column from './ListColumns/Column/Column'
@@ -44,6 +47,9 @@ function BoardContent({ board }) {
   const [activeDragItemType, setActiveDragItemType] = useState(null)
   const [activeDragItemData, setActiveDragItemData] = useState(null)
   const [oldColumnWhenDraggingCard, setOldColumnWhenDraggingCard] = useState(null)
+
+  // Final impact point
+  const lastOverId = useRef(null)
 
   useEffect(() => {
     // const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
@@ -247,7 +253,6 @@ function BoardContent({ board }) {
     setActiveDragItemType(null)
     setActiveDragItemData(null)
     setOldColumnWhenDraggingCard(null)
-
   }
 
   // Animation when dropping elements - Test by dragging and dropping directly and looking at the Overlay placeholder
@@ -255,10 +260,57 @@ function BoardContent({ board }) {
     sideEffects: defaultDropAnimationSideEffects({ styles: { active: { opacity: '0.5' } } })
   }
 
+  // Customize the optimal collision detection strategy/algorithm for dragging and dropping cards between multiple columns
+  // rgs = arguments = Arguments, parameters
+  const collisionDetectionStrategy = useCallback((args) => {
+    // In case of dragging columns, using the closestCorners algorithm is the most standard
+    if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
+      return closestCorners({ ...args })
+    }
+
+    // Find intersections, collisions, return an array of intersections with the cursor
+    const pointerIntersections = pointerWithin(args)
+
+    // If pointerIntersections is an empty array, return nothing.
+    // Thoroughly fix the flickering bug of the Dnd-kit library in the following cases:
+    // Drag a card with a large cover image and drag it to the top out of the drag and drop area
+    if (!pointerIntersections?.length) return
+
+    // The collision detection algorithm will return an array of collisions here
+    // const intersections = !!pointerIntersections?.length
+    //   ? pointerIntersections
+    //   : rectIntersection(args)
+
+    // Find the first overId in the pointerIntersections group above
+    let overId = getFirstCollision(pointerIntersections, 'id')
+    if (overId) {
+      // If the over is a column, it will find the nearest cardId within that collision area based on the collision detection algorithm closestCenter or closestCorners. However, using closestCorners here I find it smoother.
+      // Without this checkColumn section, the flickering bug can still be fixed, but dragging and dropping will be very laggy.
+      const checkColumn = orderedColumns.find(column => column._id === overId)
+      if (checkColumn) {
+        // console.log('overId before: ', overId)
+        overId = closestCorners({
+          ...args,
+          droppableContainers: args.droppableContainers.filter(container => {
+            return (container.id !== overId) && (checkColumn?.cardOrderIds?.includes(container.id))
+          })
+        })[0]?.id
+        // console.log('overId after: ', overId)
+      }
+
+      lastOverId.current = overId
+      return [{ id: overId }]
+    }
+
+    // Nếu overId là null thì trả về mảng rỗng - tránh bug crash trang
+    return lastOverId.current ? [{ id: lastOverId.current }] : []
+  }, [activeDragItemType, orderedColumns])
+
   return (
     <DndContext
       // Collision detection algorithm (without it, the card with a large cover will not be able to pull over the Column because there is now a conflict between the card and the column), we will use closestCorners instead of closestCenter
-      collisionDetection={closestCorners}
+      // collisionDetection={closestCorners}
+      collisionDetection={collisionDetectionStrategy}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
