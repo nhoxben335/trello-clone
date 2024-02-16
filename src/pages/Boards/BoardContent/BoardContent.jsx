@@ -57,10 +57,57 @@ function BoardContent({ board }) {
   }
 
   // Khởi tạo Function chung xử lý việc cập nhật lại state trong trường hợp di chuyển Card giữa các Column khác nhau.
-  const moveCardBetweenDifferentColumns = () => {
-    
-  }
+  const moveCardBetweenDifferentColumns = (
+    overColumn,
+    overCardId,
+    active,
+    over,
+    activeColumn,
+    activeDraggingCardId,
+    activeDraggingCardData
+  ) => {
+    setOrderedColumns(prevColumns => {
+      // Find the position (index) of the overCard in the target column (where the activeCard is about to be dropped)
+      const overCardIndex = overColumn?.cards?.findIndex(card => card._id === overCardId)
 
+      let newCardIndex
+      const isBelowOverItem = active.rect.current.translated &&
+        active.rect.current.translated.top > over.rect.top + over.rect.height
+      const modifier = isBelowOverItem ? 1 : 0
+      newCardIndex = overCardIndex >= 0 ? overCardIndex + modifier : overColumn?.cards?.length + 1
+
+      // Clone the old OrderedColumnsState array into a new one to process the data and return - update the new OrderedColumnsState
+      const nextColumns = cloneDeep(prevColumns)
+      const nextActiveColumn = nextColumns.find(column => column._id === activeColumn._id)
+      const nextOverColumn = nextColumns.find(column => column._id === overColumn._id)
+
+      // nextActiveColumn: Old Columns
+      if (nextActiveColumn) {
+        // Delete the card in the active column (can also be understood as the old column, the time when pulling the card out of it to move to another column)
+        nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
+
+        // Update the cardOrderIds array for data standards
+        nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
+      }
+
+      // nextOverColumn: New Column
+      if (nextOverColumn) {
+        // Check if the card being pulled exists in overColumn, if so, need to delete it first data
+        nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
+        // Next, add the dragging card to overColumn according to the new index position
+        // Updated data at columnId in card after drag card between 2 columns
+        const rebuild_activeDraggingCardData = {
+          ...activeDraggingCardData,
+          columnId: nextOverColumn._id
+        }
+        nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
+        // Updated OrderIds
+        nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
+      }
+      // console.log('nextColumns: ', nextColumns)
+      return nextColumns
+    })
+  }
 
   // Trigger when start drag an elements
   const handleDragStart = (event) => {
@@ -100,47 +147,15 @@ function BoardContent({ board }) {
 
     // Processing logic here is only when dragging the card through 2 different columns, but if dragging the card in its original column, nothing will be done. Because this is the processing when dragging (handleDragOver), but processing when dragging is completed is another problem (handleDragEnd).
     if (activeColumn._id !== overColumn._id) {
-      setOrderedColumns(prevColumns => {
-        // Find the position (index) of the overCard in the target column (where the activeCard is about to be dropped)
-        const overCardIndex = overColumn?.cards?.findIndex(card => card._id === overCardId)
-
-        let newCardIndex
-        const isBelowOverItem = active.rect.current.translated &&
-          active.rect.current.translated.top > over.rect.top + over.rect.height
-        const modifier = isBelowOverItem ? 1 : 0
-        newCardIndex = overCardIndex >= 0 ? overCardIndex + modifier : overColumn?.cards?.length + 1
-
-        // Clone the old OrderedColumnsState array into a new one to process the data and return - update the new OrderedColumnsState
-        const nextColumns = cloneDeep(prevColumns)
-        const nextActiveColumn = nextColumns.find(column => column._id === activeColumn._id)
-        const nextOverColumn = nextColumns.find(column => column._id === overColumn._id)
-
-        // nextActiveColumn: Old Columns
-        if (nextActiveColumn) {
-          // Delete the card in the active column (can also be understood as the old column, the time when pulling the card out of it to move to another column)
-          nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
-
-          // Update the cardOrderIds array for data standards
-          nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
-        }
-
-        // nextOverColumn: New Column
-        if (nextOverColumn) {
-          // Check if the card being pulled exists in overColumn, if so, need to delete it first data
-          nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
-          // Next, add the dragging card to overColumn according to the new index position
-          // Updated data at columnId in card after drag card between 2 columns
-          const rebuild_activeDraggingCardData = {
-            ...activeDraggingCardData,
-            columnId: nextOverColumn._id
-          }
-          nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
-          // Updated OrderIds
-          nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
-        }
-        // console.log('nextColumns: ', nextColumns)
-        return nextColumns
-      })
+      moveCardBetweenDifferentColumns(
+        overColumn,
+        overCardId,
+        active,
+        over,
+        activeColumn,
+        activeDraggingCardId,
+        activeDraggingCardData
+      )
     }
   }
 
@@ -169,47 +184,15 @@ function BoardContent({ board }) {
       // Action of dragging and dropping cards between 2 different columns
       // Must use activeDragItemData.columnId or oldColumnWhenDraggingCard._id (set to state from handleDragStart step) and not activeData in this handleDragEnd scope because after going through onDragOver here, the card's state has already been updated once. if (oldColumnWhenDraggingCard._id !== overColumn._id) {
       if (oldColumnWhenDraggingCard._id !== overColumn._id) {
-        setOrderedColumns(prevColumns => {
-          // Find the position (index) of the overCard in the target column (where the activeCard is about to be dropped)
-          const overCardIndex = overColumn?.cards?.findIndex(card => card._id === overCardId)
-
-          let newCardIndex
-          const isBelowOverItem = active.rect.current.translated &&
-            active.rect.current.translated.top > over.rect.top + over.rect.height
-          const modifier = isBelowOverItem ? 1 : 0
-          newCardIndex = overCardIndex >= 0 ? overCardIndex + modifier : overColumn?.cards?.length + 1
-
-          // Clone the old OrderedColumnsState array into a new one to process the data and return - update the new OrderedColumnsState
-          const nextColumns = cloneDeep(prevColumns)
-          const nextActiveColumn = nextColumns.find(column => column._id === activeColumn._id)
-          const nextOverColumn = nextColumns.find(column => column._id === overColumn._id)
-
-          // nextActiveColumn: Old Columns
-          if (nextActiveColumn) {
-            // Delete the card in the active column (can also be understood as the old column, the time when pulling the card out of it to move to another column)
-            nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
-
-            // Update the cardOrderIds array for data standards
-            nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
-          }
-
-          // nextOverColumn: New Column
-          if (nextOverColumn) {
-            // Check if the card being pulled exists in overColumn, if so, need to delete it first data
-            nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
-            // Next, add the dragging card to overColumn according to the new index position
-            // Updated data at columnId in card after drag card between 2 columns
-            const rebuild_activeDraggingCardData = {
-              ...activeDraggingCardData,
-              columnId: nextOverColumn._id
-            }
-            nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
-            // Updated OrderIds
-            nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
-          }
-          // console.log('nextColumns: ', nextColumns)
-          return nextColumns
-        })
+        moveCardBetweenDifferentColumns(
+          overColumn,
+          overCardId,
+          active,
+          over,
+          activeColumn,
+          activeDraggingCardId,
+          activeDraggingCardData
+        )
       } else {
         // Action of dragging and dropping cards in the same column
         // Original index from oldColumnWhenDraggingCard
@@ -266,9 +249,6 @@ function BoardContent({ board }) {
     setOldColumnWhenDraggingCard(null)
 
   }
-  // console.log('setActiveDragItemId: ', activeDragItemId )
-  // console.log('setActiveDragItemType: ', activeDragItemType )
-  // console.log('setActiveDragItemData: ', activeDragItemData )
 
   // Animation when dropping elements - Test by dragging and dropping directly and looking at the Overlay placeholder
   const customDropAnimation = {
