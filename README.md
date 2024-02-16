@@ -69,3 +69,6 @@ https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f
 - The error of dragging and dropping stretched elements is quite strange: https://github.com/clauderic/dnd-kit/issues/117
 - Touch tolerance: Tolerance (read more in the comment I pinned): https://docs.dndkit.com/api-documentation/sensors/touch#delay
 - Dnd-kit DragOverLay: https://docs.dndkit.com/api-documentation/draggable/drag-overlay
+- Lodash: https://lodash.com/
+- getBoundingClientRect: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+- Collision detection algorithms: https://docs.dndkit.com/api-documentation/context-provider/collision-detection-algorithms
