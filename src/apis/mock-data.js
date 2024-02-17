@@ -19,8 +19,8 @@ export const mockData = {
             boardId: 'board-id-01',
             columnId: 'column-id-01',
             title: 'Title of card 01',
-            description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
-            cover: 'https://trungquandev.com/wp-content/uploads/2022/07/fair-mern-stack-advanced-banner-trungquandev.jpg',
+            description: 'Markdown Syntax',
+            cover: 'https://media.licdn.com/dms/image/C5616AQEZfMhmlvyaqg/profile-displaybackgroundimage-shrink_350_1400/0/1633974284606?e=1712188800&v=beta&t=_i61Ic7vE2tGXUJhdnOZCHBY6PGTheTAfO2ScBeqGeQ',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03']

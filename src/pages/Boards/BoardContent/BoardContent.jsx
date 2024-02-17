@@ -16,7 +16,8 @@ import {
   getFirstCollision
 } from '@dnd-kit/core'
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, isEmpty } from 'lodash'
+import { generatePlaceholderCard } from '~/utils/formatter'
 
 import Column from './ListColumns/Column/Column'
 import Card from './ListColumns/Column/ListCards/Card/Card'
@@ -62,7 +63,7 @@ function BoardContent({ board }) {
     return orderedColumns.find(column => column?.cards?.map(card => card._id)?.includes(cardId))
   }
 
-  // Khởi tạo Function chung xử lý việc cập nhật lại state trong trường hợp di chuyển Card giữa các Column khác nhau.
+  // Initialize a common function that handles updating the state in case of moving the Card between different Columns.
   const moveCardBetweenDifferentColumns = (
     overColumn,
     overCardId,
@@ -92,6 +93,12 @@ function BoardContent({ board }) {
         // Delete the card in the active column (can also be understood as the old column, the time when pulling the card out of it to move to another column)
         nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
 
+        // Add Placeholder Card if Column is empty
+        if (isEmpty(nextActiveColumn.cards)) {
+          // console.log('Final Card being pull')
+          nextActiveColumn.cards = [generatePlaceholderCard(nextActiveColumn)]
+        }
+
         // Update the cardOrderIds array for data standards
         nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
       }
@@ -107,10 +114,14 @@ function BoardContent({ board }) {
           columnId: nextOverColumn._id
         }
         nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
+
+        // Delete Placeholder Card if exist
+        nextOverColumn.cards = nextOverColumn.cards.filter(card => !card.FE_PlaceholderCard)
+
         // Updated OrderIds
         nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
       }
-      // console.log('nextColumns: ', nextColumns)
+      console.log('nextColumns: ', nextColumns)
       return nextColumns
     })
   }
