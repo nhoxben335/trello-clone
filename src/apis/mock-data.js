@@ -4,9 +4,9 @@ export const mockData = {
     title: 'Nhan Vo MERN Stack Board',
     description: 'MERN Stack Trello',
     type: 'public', // 'private'
-    ownerIds: [], // Những users là Admin của board
-    memberIds: [], // Những users là member bình thường của board
-    columnOrderIds: ['column-id-01', 'column-id-02', 'column-id-03'], // Thứ tự sắp xếp / vị trí của các Columns trong 1 boards
+    ownerIds: [], // These users are Admins of the board
+    memberIds: [], // These users are normal members of the board
+    columnOrderIds: ['column-id-01', 'column-id-02', 'column-id-03', 'column-id-04'], // Order/position of Columns in a board
     columns: [
       {
         _id: 'column-id-01',
@@ -19,8 +19,8 @@ export const mockData = {
             boardId: 'board-id-01',
             columnId: 'column-id-01',
             title: 'Title of card 01',
-            description: 'Markdown Syntax',
-            cover: 'https://media.licdn.com/dms/image/C5616AQEZfMhmlvyaqg/profile-displaybackgroundimage-shrink_350_1400/0/1633974284606?e=1712188800&v=beta&t=_i61Ic7vE2tGXUJhdnOZCHBY6PGTheTAfO2ScBeqGeQ',
+            description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
+            cover: 'https://trungquandev.com/wp-content/uploads/2022/07/fair-mern-stack-advanced-banner-trungquandev.jpg',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03']
@@ -53,6 +53,29 @@ export const mockData = {
           { _id: 'card-id-11', boardId: 'board-id-01', columnId: 'column-id-03', title: 'Title of card 11', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
           { _id: 'card-id-12', boardId: 'board-id-01', columnId: 'column-id-03', title: 'Title of card 12', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
           { _id: 'card-id-13', boardId: 'board-id-01', columnId: 'column-id-03', title: 'Title of card 13', description: null, cover: null, memberIds: [], comments: [], attachments: [] }
+        ]
+      },
+      {
+        _id: 'column-id-04',
+        boardId: 'board-id-01',
+        title: 'Empty Column 04',
+        /**
+         * Video 37.2: Cách xử lý bug logic thư viện Dnd-kit khi Column là rỗng:
+         * Phía FE sẽ tự tạo ra một cái card đặc biệt: Placeholder Card, không liên quan tới Back-end
+         * Card đặc biệt này sẽ được ẩn ở giao diện UI người dùng.
+         * Cấu trúc Id của cái card này để Unique rất đơn giản, không cần phải làm random phức tạp:
+         * "columnId-placeholder-card" (mỗi column chỉ có thể có tối đa một cái Placeholder Card)
+         * Quan trọng khi tạo: phải đầy đủ: (_id, boardId, columnId, FE_PlaceholderCard)
+         *** Kỹ hơn nữa về cách tạo chuẩn ở bước nào thì sẽ ở học phần tích hợp API Back-end vào dự án. (bởi vì đây là file mock-data)
+         */
+        cardOrderIds: ['column-id-04-placeholder-card'],
+        cards: [
+          {
+            _id: 'column-id-04-placeholder-card',
+            boardId: 'board-id-01',
+            columnId: 'column-id-04',
+            FE_PlaceholderCard: true
+          }
         ]
       }
     ]
