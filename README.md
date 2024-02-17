@@ -6,8 +6,6 @@ Trello App is a web application that allows users to create, view, update, and d
 
 ## Features
 
-## Technologies
-
 ## Setup
 
 git clone https://github.com/nhoxben335/trello-web.git
@@ -77,11 +75,4 @@ https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f
 - Example for Multiple container: https://github.com/clauderic/dnd-kit/blob/master/stories/2%20-%20Presets/Sortable/MultipleContainers.tsx
 - Eslint rule: No extra boolean cast: https://eslint.org/docs/latest/rules/no-extra-boolean-cast
 - Collision flickering in multiple container sortable in the stories: https://github.com/clauderic/dnd-kit/issues/1213
-
-### Phase 1: Front-end JS
-Framework ExpressJS
-
-Restful APIs
-
-MongoDB
 
