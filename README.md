@@ -11,8 +11,13 @@ Trello App is a web application that allows users to create, view, update, and d
 git clone https://github.com/nhoxben335/trello-web.git
 
 ## Install dependencies
-nvm use 18.16.0
+
+```
+
+nvm use 18.16.0 (Change to currently version)
 cd trello-web -> run "yarn install" -> run "yarn dev" (zsh)
+
+```
 
 ## Project Phases
 ### Phase 1: Front-end JS
@@ -30,6 +35,9 @@ Redux - Redux Toolkit
 
 ## Reference Documents
 ### 1: Environment Set-up
+
+```
+
 - NodeJS: [https://nodejs.org/en](https://nodejs.org/en)
 - Git: [https://git-scm.com/](https://git-scm.com/)
 - Yarn: [https://classic.yarnpkg.com/lang/en/d...](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
@@ -40,6 +48,8 @@ Redux - Redux Toolkit
 - @emotion/react: https://www.npmjs.com/package/@emotion/react
 - @emotion/styled: https://www.npmjs.com/package/@emotion/styled
 - @mui/icons-material: https://www.npmjs.com/package/@mui/icons-material
+
+```
 
 ### 2: Trello Web App Layout Analysis
 
