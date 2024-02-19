@@ -87,5 +87,5 @@ https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f
 - Collision flickering in multiple container sortable in the stories: https://github.com/clauderic/dnd-kit/issues/1213
 
 # API to front-end
-
 - Axios: https://www.npmjs.com/package/axios
+- CORS: https://www.npmjs.com/package/cors
