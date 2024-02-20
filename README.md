@@ -6,6 +6,10 @@ Trello App is a web application that allows users to create, view, update, and d
 
 ## Features
 
+- Front-End: https://github.com/nhoxben335/trello-clone
+
+- Back-End : https://github.com/nhoxben335/trello-api
+
 ## Setup
 
 git clone https://github.com/nhoxben335/trello-web.git
